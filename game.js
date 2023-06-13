@@ -1,12 +1,10 @@
 var wins = 0
 var losses = 0
 var ties = 0
-
+var keepPlaying = true
 var choices = ["R", "P", "S"]
 
-var keepPlaying = true
-
-while (keepPlaying) {
+function getChoices() {
   // human choice
   var humanChoice = prompt("Choose R, P, or S")
 
@@ -14,10 +12,13 @@ while (keepPlaying) {
   var randomNum = Math.floor( Math.random() * 3 )
   var computerChoice = choices[randomNum] 
 
-  console.log("Human: " + humanChoice)
-  console.log("Computer: " + computerChoice)
+  return { 
+    humanChoice: humanChoice, 
+    computerChoice: computerChoice,
+  }
+}
 
-  // compare choices
+function compareChoices(humanChoice, computerChoice) {
   if (
     humanChoice === "S" && computerChoice === "P" ||
     humanChoice === "R" && computerChoice === "S" ||
@@ -32,10 +33,16 @@ while (keepPlaying) {
     alert("You lost!")
     losses++
   }
+}
 
-  // show score
+function alertScoreboard() {
   alert("Wins: " + wins + "\nTies: " + ties + "\nLosses: " + losses)
+}
 
+while (keepPlaying) {
+  var chosenLetters = getChoices()
+  compareChoices(chosenLetters.humanChoice, chosenLetters.computerChoice)
+  alertScoreboard()
   keepPlaying = confirm("Do you want to play again?")
 }
 
