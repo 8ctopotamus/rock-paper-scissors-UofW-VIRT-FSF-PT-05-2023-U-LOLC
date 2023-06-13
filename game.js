@@ -21,15 +21,17 @@ if (
   humanChoice === "P" && computerChoice === "R"
 ) {
   alert("You won!")
-  // increase wins
+  wins++
 } else if (humanChoice === computerChoice) {
   alert("Round tied!")
-  // increase ties 
+  ties++
 } else {
   alert("You lost!")
-  // increase losses
+  losses++
 }
 
+// show score
+alert("Wins: " + wins + "\nTies: " + ties + "\nLosses: " + losses)
 
 // ask user "do you want to play again?"
   // if yes
